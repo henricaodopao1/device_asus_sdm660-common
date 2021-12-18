@@ -1,3 +1,15 @@
 type nfc_sensors_prop, property_type;
 type vendor_camera_prop, property_type;
 type vendor_fingerprint_prop, property_type;
+
+# msm
+type cpucore_prop, property_type;
+
+# tcp
+type tcp_prop, property_type;
+
+# GPU/CPU Boosts
+type boosts_prop, property_type;
+
+# Spectrum
+type spectrum_prop, property_type;

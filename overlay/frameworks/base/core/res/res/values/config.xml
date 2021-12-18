@@ -329,4 +329,11 @@
          fading edges is prohibitively expensive on most GPUs. -->
     <bool name="config_ui_enableFadingMarquee">true</bool>
 
+    <!-- Delay that allows some content to arrive at the display before switching
+         from DOZE to ON, in millis. -->
+    <integer name="config_wakeUpDelayDoze">32</integer>
+    
+    <string name="config_alternativeDeviceKeyHandlerLib" translatable="false">/system/priv-app/ZenParts/ZenParts.apk</string>
+    <string name="config_alternativeDeviceKeyHandlerClass" translatable="false">com.asus.zenparts.KeyHandler</string>
+
 </resources>

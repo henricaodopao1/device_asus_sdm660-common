@@ -30,6 +30,8 @@ import /vendor/etc/init/hw/init.msm.usb.configfs.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.qcom.asus.rc
 import /vendor/etc/init/hw/init.device.rc
+import /vendor/etc/init/hw/init.parallax.rc
+import /vendor/etc/init/hw/init.spectrum.rc
 
 on early-init
 
@@ -162,6 +164,14 @@ on boot
     chown system system /sys/class/backlight/panel1-backlight/brightness
     chown system system /sys/class/backlight/panel1-backlight/max_brightness
 
+    # Msm Thermal
+    chown system system /sys/module/msm_thermal/parameters/enabled
+    chmod 0660 /sys/module/msm_thermal/parameters/enabled
+    chown system system /sys/module/msm_thermal/core_control/enabled
+    chmod 0660 /sys/module/msm_thermal/core_control/enabled
+    chown system system /sys/module/msm_thermal/vdd_restriction/enabled
+    chmod 0660 /sys/module/msm_thermal/vdd_restriction/enabled
+
     # Create directory used for display
     mkdir /mnt/vendor/persist/display 0770 system graphics
 
@@ -174,6 +184,12 @@ on boot
     # sensors log dir
     mkdir /data/vendor/sensors
     chown system system /data/vendor/sensors
+
+    # Smart charging
+    chown system system /sys/class/power_supply/battery/input_suspend
+    chmod 0666 /sys/class/power_supply/battery/input_suspend
+    chown system system /sys/class/power_supply/battery/charging_enabled
+    chmod 0660 /sys/class/power_supply/battery/charging_enabled
 
 # msm specific files that need to be created on /data
 on post-fs-data
