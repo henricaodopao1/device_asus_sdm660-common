@@ -83,6 +83,10 @@ ro.com.google.clientidbase.ms=android-asus-tpin
 ro.com.google.rlzbrandcode=ASUP
 ro.com.google.rlz_ap_whitelist=y0,y5,y6,y7,y9
 
+# Graphics
+debug.renderengine.backend=skiaglthreaded
+renderthread.skia.reduceopstasksplitting=true
+
 #GPU
 debug.sf.early_phase_offset_ns=1500000
 debug.sf.early_app_phase_offset_ns=1500000
