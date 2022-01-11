@@ -7,8 +7,5 @@ allow platform_app sysfs_battery_supply:file { getattr open read };
 allow platform_app sysfs_kgsl:dir search;
 allow platform_app sysfs_kgsl:file { getattr open read };
 
-# GPU/CPU Boosts
-allow platform_app sysfs_kgsl:dir { search };
-
 # Torch
 allow platform_app sysfs_leds:dir search;

@@ -39,7 +39,6 @@ import com.asus.zenparts.preferences.CustomSeekBarPreference;
 import com.asus.zenparts.preferences.SecureSettingListPreference;
 import com.asus.zenparts.preferences.SecureSettingSwitchPreference;
 import com.asus.zenparts.preferences.VibratorStrengthPreference;
-import com.asus.zenparts.speaker.ClearSpeakerActivity;
 
 import com.asus.zenparts.SuShell;
 import com.asus.zenparts.SuTask;
@@ -65,33 +64,10 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String KEY_VIBSTRENGTH = "vib_strength";
     private static final String CATEGORY_DISPLAY = "display";
     private static final String PREF_DEVICE_KCAL = "device_kcal";
-    
-    public static final String PREF_SPECTRUM = "spectrum";
-    public static final String SPECTRUM_SYSTEM_PROPERTY = "persist.spectrum.profile";
-
-    public static final String PREF_GPUBOOST = "gpuboost";
-    public static final String GPUBOOST_SYSTEM_PROPERTY = "persist.zenparts.gpu_profile";
-
-    public static final String PREF_CPUBOOST = "cpuboost";
-    public static final String CPUBOOST_SYSTEM_PROPERTY = "persist.zenparts.cpu_profile";
-    
-    public static final String PERF_MSM_THERMAL = "msmthermal";
-    public static final String MSM_THERMAL_PATH = "/sys/module/msm_thermal/parameters/enabled";
-    public static final String PERF_CORE_CONTROL = "corecontrol";
-    public static final String CORE_CONTROL_PATH = "/sys/module/msm_thermal/core_control/enabled";
-    public static final String PERF_VDD_RESTRICTION = "vddrestrict";
-    public static final String VDD_RESTRICTION_PATH = "/sys/module/msm_thermal/vdd_restriction/enabled";
-    public static final String PREF_CPUCORE = "cpucore";
-    public static final String CPUCORE_SYSTEM_PROPERTY = "persist.cpucore.profile";
 
     public static final String PREF_BACKLIGHT_DIMMER = "backlight_dimmer";
     public static final String BACKLIGHT_DIMMER_PATH = "/sys/module/mdss_fb/parameters/backlight_dimmer";
     public static final String PREF_KEY_FPS_INFO = "fps_info";
-
-    public static final String PREF_TCP = "tcpcongestion";
-    public static final String TCP_SYSTEM_PROPERTY = "persist.tcp.profile";
-
-    private static final String PREF_CLEAR_SPEAKER = "clear_speaker_settings";
 
     private static final String TAG = "ZenParts";
     private static final String SELINUX_CATEGORY = "selinux";
@@ -107,20 +83,6 @@ public class DeviceSettings extends PreferenceFragment implements
     private CustomSeekBarPreference mMicrophoneGain;
     private CustomSeekBarPreference mEarpieceGain;
     private CustomSeekBarPreference mSpeakerGain;
-    
-    private SecureSettingListPreference mSPECTRUM;
-
-    private SecureSettingListPreference mGPUBOOST;
-    private SecureSettingListPreference mCPUBOOST;
-
-    private Preference mClearSpeakerPref;
-    
-    private SecureSettingSwitchPreference mMsmThermal;
-    private SecureSettingSwitchPreference mCoreControl;
-    private SecureSettingSwitchPreference mVddRestrict;
-    private SecureSettingListPreference mCPUCORE;
-
-    private SecureSettingListPreference mTCP;
 
     private SecureSettingSwitchPreference mBacklightDimmer;
     private static Context mContext;
@@ -193,55 +155,6 @@ public class DeviceSettings extends PreferenceFragment implements
             startActivity(intent);
             return true;
         });
-            
-        mSPECTRUM = (SecureSettingListPreference) findPreference(PREF_SPECTRUM);
-        mSPECTRUM.setValue(FileUtils.getStringProp(SPECTRUM_SYSTEM_PROPERTY, "0"));
-        mSPECTRUM.setSummary(mSPECTRUM.getEntry());
-        mSPECTRUM.setOnPreferenceChangeListener(this);
-        
-        //clear speaker
-        mClearSpeakerPref = (Preference) findPreference(PREF_CLEAR_SPEAKER);
-        mClearSpeakerPref.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(getActivity().getApplicationContext(), ClearSpeakerActivity.class);
-            startActivity(intent);
-            return true;
-        });
-        
-        //MSM Thermal control
-        if (FileUtils.fileWritable(MSM_THERMAL_PATH)) {
-            mMsmThermal = (SecureSettingSwitchPreference) findPreference(PERF_MSM_THERMAL);
-            mMsmThermal.setChecked(FileUtils.getFileValueAsBoolean(MSM_THERMAL_PATH, true));
-            mMsmThermal.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PERF_MSM_THERMAL));
-        }
-
-        if (FileUtils.fileWritable(CORE_CONTROL_PATH)) {
-            mCoreControl = (SecureSettingSwitchPreference) findPreference(PERF_CORE_CONTROL);
-            mCoreControl.setChecked(FileUtils.getFileValueAsBoolean(CORE_CONTROL_PATH, true));
-            mCoreControl.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PERF_CORE_CONTROL));
-        }
-
-        if (FileUtils.fileWritable(VDD_RESTRICTION_PATH)) {
-            mVddRestrict = (SecureSettingSwitchPreference) findPreference(PERF_VDD_RESTRICTION);
-            mVddRestrict.setChecked(FileUtils.getFileValueAsBoolean(VDD_RESTRICTION_PATH, true));
-            mVddRestrict.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PERF_VDD_RESTRICTION));
-        }
-
-        mCPUCORE = (SecureSettingListPreference) findPreference(PREF_CPUCORE);
-        mCPUCORE.setValue(FileUtils.getStringProp(CPUCORE_SYSTEM_PROPERTY, "0"));
-        mCPUCORE.setSummary(mCPUCORE.getEntry());
-        mCPUCORE.setOnPreferenceChangeListener(this);
-
-	// TCP
-	mTCP = (SecureSettingListPreference) findPreference(PREF_TCP);
-	mTCP.setValue(FileUtils.getStringProp(TCP_SYSTEM_PROPERTY, "0"));
-	mTCP.setSummary(mTCP.getEntry());
-	mTCP.setOnPreferenceChangeListener(this);
 
 	//Ambient gestures
 	mAmbientPref = findPreference("ambient_display_gestures");
@@ -253,16 +166,6 @@ public class DeviceSettings extends PreferenceFragment implements
                 return true;
             }
         });
-    //boosts
-    mGPUBOOST = (SecureSettingListPreference) findPreference(PREF_GPUBOOST);
-        mGPUBOOST.setValue(FileUtils.getStringProp(GPUBOOST_SYSTEM_PROPERTY, "0"));
-        mGPUBOOST.setSummary(mGPUBOOST.getEntry());
-        mGPUBOOST.setOnPreferenceChangeListener(this);
-
-        mCPUBOOST = (SecureSettingListPreference) findPreference(PREF_CPUBOOST);
-        mCPUBOOST.setValue(FileUtils.getStringProp(CPUBOOST_SYSTEM_PROPERTY, "0"));
-        mCPUBOOST.setSummary(mCPUBOOST.getEntry());
-        mCPUBOOST.setOnPreferenceChangeListener(this);
 
     }
 
@@ -273,36 +176,6 @@ public class DeviceSettings extends PreferenceFragment implements
             case PREF_TORCH_BRIGHTNESS:
                 FileUtils.setValue(TORCH_1_BRIGHTNESS_PATH, (int) value);
                 FileUtils.setValue(TORCH_2_BRIGHTNESS_PATH, (int) value);
-                break;
-                
-            case PREF_SPECTRUM:
-                mSPECTRUM.setValue((String) value);
-                mSPECTRUM.setSummary(mSPECTRUM.getEntry());
-                FileUtils.setStringProp(SPECTRUM_SYSTEM_PROPERTY, (String) value);
-                break;
-            
-            case PERF_MSM_THERMAL:
-                FileUtils.setValue(MSM_THERMAL_PATH, (boolean) value);
-                break;
-
-            case PERF_CORE_CONTROL:
-                FileUtils.setValue(CORE_CONTROL_PATH, (boolean) value);
-                break;
-
-            case PERF_VDD_RESTRICTION:
-                FileUtils.setValue(VDD_RESTRICTION_PATH, (boolean) value);
-                break;
-
-            case PREF_CPUCORE:
-                mCPUCORE.setValue((String) value);
-                mCPUCORE.setSummary(mCPUCORE.getEntry());
-                FileUtils.setStringProp(CPUCORE_SYSTEM_PROPERTY, (String) value);
-                break;
-            
-            case PREF_TCP:
-                mTCP.setValue((String) value);
-                mTCP.setSummary(mTCP.getEntry());
-                FileUtils.setStringProp(TCP_SYSTEM_PROPERTY, (String) value);
                 break;
                
             case PREF_KEY_FPS_INFO:
@@ -327,16 +200,6 @@ public class DeviceSettings extends PreferenceFragment implements
                 break;
             case PREF_SPEAKER_GAIN:
                 FileUtils.setValue(SPEAKER_GAIN_PATH, (int) value);
-               break;
-            case PREF_GPUBOOST:
-               mGPUBOOST.setValue((String) value);
-               mGPUBOOST.setSummary(mGPUBOOST.getEntry());
-               FileUtils.setStringProp(GPUBOOST_SYSTEM_PROPERTY, (String) value);
-               break;
-            case PREF_CPUBOOST:
-               mCPUBOOST.setValue((String) value);
-               mCPUBOOST.setSummary(mCPUBOOST.getEntry());
-               FileUtils.setStringProp(CPUBOOST_SYSTEM_PROPERTY, (String) value);
                break;
             case PREF_SELINUX_MODE:
                if (preference == mSelinuxMode) {

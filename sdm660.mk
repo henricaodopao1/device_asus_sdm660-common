@@ -400,11 +400,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.recovery.qcom.rc \
     init.target.rc \
-    ueventd.qcom.rc \
-    init.spectrum.rc \
-    init.spectrum.sh \
-    init.parallax.rc \
-    init.parallax.sh
+    ueventd.qcom.rc
 
 # Seccomp
 PRODUCT_COPY_FILES += \

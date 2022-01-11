@@ -36,32 +36,6 @@
     <string name="earpiece_gain">Earpiece gain (Calls)</string>
     <string name="speaker_gain">Speaker gain</string>
 
-     <!-- Boosts -->
-    <string name="boost_title">Boost</string>
-    <string name="gpuboost_title">GPU boost</string>
-    <string name="cpuboost_title">CPU boost</string>
-    <string name="gpuboost_dialogTitle">Select your GPU boost level</string>
-    <string name="cpuboost_dialogTitle">Select your CPU boost level</string>
-
-    <!-- GPU/CPU Boost Presets -->
-    <string name="gpuboost_high">High</string>
-    <string name="gpuboost_medium">Medium</string>
-    <string name="gpuboost_low">Low</string>
-    <string name="gpuboost_disable">Disable</string>
-
-    <string name="cpuboost_high">High</string>
-    <string name="cpuboost_medium">Medium</string>
-    <string name="cpuboost_low">Low</string>
-    <string name="cpuboost_disable">Disable</string>
-
-    <!-- Speaker -->
-    <string name="speaker_category">Speaker</string>
-
-    <!-- Clear Speaker -->
-    <string name="clear_speaker_title">Clear speaker</string>
-    <string name="clear_speaker_summary">Play a 30-second audio to clear the speaker</string>
-    <string name="clear_speaker_description">Run this feature once or twice if you find that your speaker is lightly blocked by dust. Set media volume to maximum.\n\nIf the speaker is blocked heavily, run this feature 2-5 times while shaking your device with the speaker facing downwards.</string>
-
     <!-- Selinux Switch -->
     <string name="selinux_category">SELinux</string>
     <string name="selinux_explanation_summary">SELinux is a set of kernel modifications and user-space tools. Changing modes can cause unwanted effects. Use at your own risk.</string>
@@ -73,18 +47,6 @@
     <string name="selinux_permissive_toast_title">Selinux set to permissive!</string>
     <string name="selinux_enforcing_toast_title">Selinux set to enforcing!</string>
     <string name="cannot_get_su">Action failed because of missing superuser access</string>
-
-    <!-- Spectrum Profiles -->
-    <string name="spectrum_profile_title">Spectrum</string>
-    <string name="spectrum_title">Spectrum Profiles</string>
-    <string name="spectrum_summary">Choose your Spectrum Profiles</string>
-    <string name="spectrum_dialogTitle">Choose your Spectrum Profiles</string>
-
-    <!-- Values for Spectrum Presets -->
-    <string name="spectrum_balance">Balance</string>
-    <string name="spectrum_performance">Performance</string>
-    <string name="spectrum_battery">Battery</string>
-    <string name="spectrum_gaming">Gaming</string>
 
     <!-- Kcal Settings -->
     <string name="device_kcal_title">Display Color Calibration</string>
@@ -142,29 +104,7 @@
     <string name="custom_seekbar_default_value">Default</string>
     <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong press to set</string>
     <string name="custom_seekbar_default_value_is_set">Default value is set</string>
-    
-    <!-- MSM Thermal -->
-    <string name="thermal_title">Thermal</string>
-    <string name="msmthermal_title">MSM Thermal</string>
-    <string name="msmthermal_summary">Enable Thermal driver control</string>
-    <string name="corecontrol_title">Core Control</string>
-    <string name="corecontrol_summary">Limit the cores</string>
-    <string name="vddrestrict_title">VDD Restriction</string>
-    <string name="vddrestrict_summary">Limits CPU voltage</string>
-    <string name="cpucore_title">CPU Core</string>
-    <string name="cpucore_summary">Control Your CPU core</string>
-    <string name="cpucore_dialogTitle">Select no. of core want to disable</string>
 
-    <!-- Values for CPU Boost Presets -->
-    <string name="cpucore_zero">0</string>
-    <string name="cpucore_one">1</string>
-    <string name="cpucore_two">2</string>
-    <string name="cpucore_three">3</string>
-    <string name="cpucore_four">4</string>
-    <string name="cpucore_five">5</string>
-    <string name="cpucore_six">6</string>
-    <string name="cpucore_seven">7</string>
-    
     <!-- Ambient gesture haptic feedback -->
     <string name="ambient_gesture_haptic_feedback">Haptic feedback</string>
     <string name="ambient_gesture_haptic_feedback_summary">Vibrate when a Ambient gesture is detected</string>
@@ -202,22 +142,6 @@
     <string name="proximity_wake_title">Proximity wake</string>
     <string name="proximity_wake_enable_title">Proximity wake</string>
     <string name="proximity_wake_enable_summary">Wake device on hand wave</string>
-
-    <!-- LKM Profiles -->
-    <string name="tcpcongestion_title">TCP Congestion</string>
-    <string name="tcpcongestion_summary">Transmission Control Protocol Congestion Algorithm</string>
-    <string name="tcpcongestion_dialogTitle">Choose your TCP Congestion Algorithm</string>
-
-    <string name="misc_title">Miscellaneous</string>
-
-    <!-- Values for LKM Presets -->
-    <string name="tcpcongestion_cubic">cubic</string>
-    <string name="tcpcongestion_westwood">westwood</string>
-    <string name="tcpcongestion_veno">veno</string>
-    <string name="tcpcongestion_bic">bic</string>
-    <string name="tcpcongestion_illinois">illinois</string>
-    <string name="tcpcongestion_htcp">htcp</string>
-    <string name="tcpcongestion_bbr">bbr</string>
 
     <!-- FPS Info -->
     <string name="fps_info_title">FPS Info Overlay</string>

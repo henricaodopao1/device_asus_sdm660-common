@@ -13,11 +13,6 @@ allow system_app sysfs_egain:file { open read getattr write };
 # Headphone Gain
 allow system_app sysfs_hgain:file { open read getattr write };
 
-# GPU/CPU Boosts
-set_prop(system_app, boosts_prop);
-get_prop(system_app, boosts_prop);
-allow system_app boosts_prop:property_service set;
-
 # Kcal
 allow system_app kcal_dev:file rw_file_perms;
 allow system_app kcal_dev:dir search;
@@ -34,24 +29,9 @@ allow system_app selinuxfs:file { read open };
 # Speaker Gain
 allow system_app sysfs_sgain:file { open read getattr write };
 
-# Spectrum
-get_prop(system_app, spectrum_prop);
-allow system_app spectrum_prop:property_service set;
-
 # Torch
 allow system_app sysfs_tbrightness:file { open getattr write };
 allow system_app sysfs_leds:dir search;
-
-# TCP
-allow system_app tcp_prop:property_service set;
-get_prop(system_app, tcp_prop);
-
-# MSM
-allow system_app sysfs_msmthermal:file { open read getattr write };
-allow system_app sysfs_corecontrol:file { open read getattr write };
-allow system_app sysfs_vddrestrict:file { open read getattr write };
-allow system_app cpucore_prop:property_service set;
-get_prop(system_app, cpucore_prop);
 
 # Vibrator
 allow system_app sysfs_vibrator:file { getattr read write open };
